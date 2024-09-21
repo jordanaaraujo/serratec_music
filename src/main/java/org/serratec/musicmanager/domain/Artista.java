@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="artista")
@@ -13,8 +15,12 @@ public class Artista {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	
+	@Size(min=5, max=100)
 	@Column(name="nome", length = 100, nullable = false)
 	private String nome;
+	@NotNull
 	@Column(name="tipo_artista", length =1, nullable=false)
 	private String tipoArtista;
 	

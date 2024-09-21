@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/artista")
 public class ArtistaController {
@@ -41,13 +43,13 @@ public class ArtistaController {
 	}
 
 	@PostMapping
-	public Artista insere(@RequestBody Artista artista) {
+	public Artista insere( @Valid @RequestBody Artista artista) {
 		return artistaRepository.save(artista);
 			
 	}
 	
 	@PutMapping("/{id}")
-	public Artista atualiza(@RequestBody Artista artista, @PathVariable Long id) {
+	public Artista atualiza(@Valid @RequestBody Artista artista, @PathVariable Long id) {
 		Optional<Artista> opArtista = artistaRepository.findById(id);
 		if (opArtista.isEmpty()) {
 			return null;
